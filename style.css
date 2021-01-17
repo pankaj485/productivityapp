@@ -1,0 +1,185 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	background: linear-gradient(-135deg, rgba(71, 76, 211, 1), rgba(164, 46, 201, 1)) no-repeat center center fixed;
+	background-size: cover;
+	text-align: center;
+	font-family: 'Segoe UI', sans-serif;
+	overflow-wrap: break-word;
+}
+
+button {
+	height: 50px;
+	width: 90px;
+	font-size: medium;
+	border-radius: 5px;
+	color: white;
+	border: none;
+	margin: 0 auto 30px;
+}
+
+/* main container  */
+
+/* .container {
+	width: 90%;
+	margin: 30px auto;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+} */
+
+section {
+	width: 32%;
+	/* height: 550px; */
+	margin: 7% auto 0;
+	/* height: 500px; */
+	background-color: #4e4b4b;
+	border-radius: 5px;
+}
+
+.header {
+	color: white;
+	background-color: #444141;
+	padding: 20px;
+	border-radius: 5px;
+}
+
+.contentInfo {
+	background-color: #3a3d44;
+	max-width: 80%;
+	margin: 20px auto;
+	padding: 10px;
+	color: white;
+	border-radius: 5px;
+}
+
+.timeInfo {
+	display: flex;
+	width: 80%;
+	margin: 50px auto;
+	justify-content: space-between;
+	/* border: 2px red solid; */
+	padding: 0 0 50px;
+}
+
+.hours,
+.minutes,
+.seconds {
+	margin: 50px auto;
+	width: 32%;
+	color: white;
+}
+.hours h2,
+.minutes h2,
+.seconds h2 {
+	border-top-right-radius: 3px;
+	border-top-left-radius: 3px;
+	padding: 10px 0;
+	font-weight: lighter;
+}
+.hours h3,
+.minutes h3,
+.seconds h3 {
+	border-bottom-right-radius: 3px;
+	border-bottom-left-radius: 3px;
+	padding: 5px 0;
+}
+.hours h2,
+.minutes h2 {
+	background-color: #2c9bf4;
+}
+.seconds h2 {
+	background-color: #ff006a;
+}
+.hours h3,
+.minutes h3 {
+	background-color: #1a78c5;
+}
+.seconds h3 {
+	background-color: #db0d63;
+}
+
+/* section 2  */
+
+.timerInputs,
+.pomodoroInputs {
+	display: flex;
+	flex-direction: column;
+	width: 80%;
+	margin: 50px auto;
+}
+.inputTimeHour input,
+.inputTimeMinutes input,
+.inputTimeSeconds input,
+.pomodoroInputs input {
+	max-width: 50%;
+	padding: 10px;
+	border-radius: 3px;
+	margin: 3px auto;
+	font-size: 24px;
+	text-transform: uppercase;
+	text-align: center;
+	border: none;
+	color: black;
+}
+
+.timerDecisionButtons,
+.pomodoroDecisonButtons {
+	display: flex;
+	max-width: 70%;
+	margin: auto;
+	justify-content: space-between;
+}
+
+.startButton {
+	background-color: #2abd8c;
+}
+.resetButton {
+	background-color: #d62727;
+}
+.startButton,
+.resetButton {
+	font-weight: 500;
+	position: relative;
+}
+
+/* section 3 */
+.pomodoroInputs {
+	color: white;
+	font-size: large;
+	font-weight: bold;
+	margin: 13% auto;
+}
+
+/* bootstrap */
+/* 
+.carousel-control .glyphicon-chevron-right, .carousel-control .icon-next {
+	right: 0;  //or you can increase this
+  }
+  
+  .carousel-control .glyphicon-chevron-left, .carousel-control .icon-prev {
+	left: 0; //or you can increase this
+  }
+ */
+
+.carousel-control-prev {
+	margin-left: 15%;
+}
+.carousel-control-next {
+	margin-right: 15%;
+}
+.carousel-indicators {
+	position: absolute;
+	top: 102%;
+	/* left: 50%; */
+	/* z-index: 5; */
+}
+/* 
+background-color: #2c9bf4;
+background-color: #1a78c5;
+background-color: #ff006a;
+background-color: #db0d63; 
+*/
