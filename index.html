@@ -30,18 +30,18 @@
 							<h1>DIGITAL WATCH</h1>
 						</div>
 						<div class="contentInfo">
-							<h2>TIMEZONE : GMT +5:45</h2>
+							<h2 id="sectionOneTimeZOne">TIMEZONE : GMT +5:45</h2>
 						</div>
 						<div class="timeInfo">
-							<div class="hours">
+							<div id="hours" class="hours">
 								<h2>HH</h2>
 								<h3>HRS</h3>
 							</div>
-							<div class="minutes">
+							<div id="minutes" class="minutes">
 								<h2>MM</h2>
 								<h3>MINS</h3>
 							</div>
-							<div class="seconds">
+							<div id="seconds" class="seconds">
 								<h2>SS</h2>
 								<h3>SECS</h3>
 							</div>
@@ -49,27 +49,27 @@
 					</section>
 				</div>
 				<div class="carousel-item">
-					<section id="section2">
+					<section id="section2" class="hideIt">
 						<div class="header">
 							<h1>TIMER</h1>
 						</div>
 						<div class="contentInfo">
-							<h2>HH : MM : SS</h2>
+							<h2 id="timerContentInfo">HH : MM : SS</h2>
 						</div>
-						<div class="timerInputs">
+						<div class="timerInputs" id="timerInputs">
 							<div class="inputTimeHour">
-								<input type="text" placeholder="HRS" />
+								<input type="number" placeholder="HRS" />
 							</div>
 							<div class="inputTimeMinutes">
-								<input type="text" placeholder="MINS" />
+								<input type="number" placeholder="MINS" />
 							</div>
 							<div class="inputTimeSeconds">
-								<input type="text" placeholder="SECS" />
+								<input type="number" placeholder="SECS" />
 							</div>
 						</div>
 						<div class="timerDecisionButtons">
-							<button class="startButton">START</button>
-							<button class="resetButton">RESET</button>
+							<button id="sectionTwoTimerStart" class="startButton">START</button>
+							<button id="sectionTwoTimerReset" class="resetButton">RESET</button>
 						</div>
 					</section>
 				</div>
@@ -80,23 +80,24 @@
 						</div>
 
 						<div class="contentInfo">
-							<h2>HH : MM : SS</h2>
+							<h4 id="worktype"></h4>
+							<h2 id="pomodoroTimer">HH : MM : SS</h2>
 						</div>
 
-						<div class="pomodoroInputs">
+						<div class="pomodoroInputs" id="pomodoroInputs">
 							<div class="workTime">
 								WORK TIME <br />
-								<input placeholder="HH MM SS" type="text" />
+								<input placeholder="minutes" type="number" />
 							</div>
 							<div class="restTime">
 								<br />
 								REST TIME <br />
-								<input placeholder="HH MM SS" type="text" />
+								<input placeholder="minutes" type="number" />
 							</div>
 						</div>
 						<div class="pomodoroDecisonButtons">
-							<button class="startButton">START</button>
-							<button class="resetButton">RESET</button>
+							<button class="startButton" id="pomodoroStartButton">START</button>
+							<button class="resetButton" id="pomodoroResetButton">RESET</button>
 						</div>
 					</section>
 				</div>
