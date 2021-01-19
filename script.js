@@ -4,14 +4,8 @@
 
 let presentTime = new Date();
 let timeZone = presentTime.toString().split(' ')[5];
-let geographicZone =
-	presentTime.toString().split(' ')[6] + ' ' + presentTime.toString().split(' ')[7] + ' ' + presentTime.toString().split(' ')[8];
-
-let toAppendTimeZone = `${timeZone} ${geographicZone}`;
+let toAppendTimeZone = `${timeZone} `;
 document.getElementById('sectionOneTimeZOne').innerHTML = toAppendTimeZone;
-
-// let soundEffect = new Audio();
-// soundEffect.src = './clockTicle.mp3';
 
 let digitalWatch = setInterval(myTimer, 1000);
 function myTimer() {
@@ -87,92 +81,70 @@ document.getElementById('sectionTwoTimerStart').addEventListener('click', (event
 /* =======================   SECTION 3  =============================*/
 /* ================================================================= */
 
-let pomodoroInputWorkTime = document.getElementById('pomodoroInputs').childNodes[1].childNodes[3];
-let pomodoroInputRestTime = document.getElementById('pomodoroInputs').childNodes[3].childNodes[5];
-let pomodoroToShow = document.getElementById('pomodoroTimer');
-let worktype = document.getElementById('worktype');
-
 document.getElementById('pomodoroStartButton').addEventListener('click', (event) => {
 	event.preventDefault();
-	let pomodoroTotalWorkTime = pomodoroInputWorkTime.value ? parseInt(pomodoroInputWorkTime.value * 60) : 0;
-	let pomodoroTotalRestTime = pomodoroInputRestTime.value ? parseInt(pomodoroInputRestTime.value * 60) : 0;
-	console.log(pomodoroTotalWorkTime);
-	console.log(pomodoroTotalRestTime);
-	let workTimeEnded = false;
+	let pomodoroInputWork = document.getElementById('pomodoroInputWorkMinutes').value;
+	let pomodoroInputRest = document.getElementById('pomodoroInputRestMinutes').value;
 
-	// console.log(pomodoroTotalWorkTime);
-	// console.log(pomodoroTotalRestTime);
+	pomodoroInputWork = pomodoroInputWork ? parseInt(pomodoroInputWork) : 0;
+	pomodoroInputRest = pomodoroInputRest ? parseInt(pomodoroInputRest) : 0;
 
-	function executeWorkTimer() {
-		if (pomodoroTotalWorkTime >= 0) {
-			let timerHours = Math.floor(pomodoroTotalWorkTime / 3600);
-			let timerMinutes = Math.floor((pomodoroTotalWorkTime % 3600) / 60);
-			let timerSeconds = Math.floor((pomodoroTotalWorkTime % 3600) % 60);
+	console.log(pomodoroInputRest);
+	let workTimeInSecs = pomodoroInputWork * 60;
+	let restTimeInSecs = pomodoroInputRest * 60;
 
-			timerSeconds = timerSeconds < 10 ? '0' + timerSeconds : timerSeconds;
-			timerMinutes = timerMinutes < 10 ? '0' + timerMinutes : timerMinutes;
+	let workTime = setInterval(() => {
+		if (workTimeInSecs >= 0) {
+			let hours = Math.floor(workTimeInSecs / 3600);
+			let mins = Math.floor((workTimeInSecs % 3600) / 60);
+			let secs = Math.floor((workTimeInSecs % 3600) % 60);
 
-			pomodoroToShow.innerHTML = `${timerHours}:${timerMinutes}:${timerSeconds}`;
-			worktype.innerHTML = `WORK TIME `;
-			pomodoroTotalWorkTime--;
-		} else if (!pomodoroTotalWorkTime) {
-			clearPomodoroFields();
-			alert('give input');
+			mins = mins < 10 ? '0' + mins : mins;
+			secs = secs < 10 ? '0' + secs : secs;
+
+			document.getElementById('worktype').innerHTML = 'WORK TIME';
+			document.getElementById('pomodoroTimer').innerHTML = `${hours}:${mins}:${secs}`;
+			workTimeInSecs--;
+		} else if (!workTimeInSecs) {
+			console.log('something wrong ');
 		} else {
-			let flashTimerInfoPomodoro = setTimeout(() => {
-				pomodoroToShow.innerHTML = `WORK TIME UP `;
-				pomodoroToShow.classList.toggle('timeUp');
-				clearTimeout(flashTimerInfoPomodoro);
-			}, 3000);
-			pomodoroToShow.classList.toggle('timeUp');
-			executeRestTimer();
+			document.getElementById('pomodoroTimer').innerHTML = `TIME UP !!`;
+			clearInterval(workTime);
+			setTimeout(() => {
+				let restTime = setInterval(() => {
+					if (restTimeInSecs >= 0) {
+						let hours = Math.floor(restTimeInSecs / 3600);
+						let mins = Math.floor((restTimeInSecs % 3600) / 60);
+						let secs = Math.floor((restTimeInSecs % 3600) % 60);
+
+						mins = mins < 10 ? '0' + mins : mins;
+						secs = secs < 10 ? '0' + secs : secs;
+						document.getElementById('worktype').innerHTML = 'REST TIME';
+						document.getElementById('pomodoroTimer').innerHTML = `${hours}:${mins}:${secs}`;
+						restTimeInSecs--;
+					} else if (!restTimeInSecs) {
+						console.log('something wrong ');
+					} else {
+						document.getElementById('pomodoroTimer').innerHTML = `TIME UP !!`;
+						clearPomodoroFields();
+						clearInterval(restTime);
+					}
+				}, 1000);
+			}, 1000);
 		}
-	}
-
-	function executeRestTimer() {
-		if (pomodoroTotalRestTime >= 0) {
-			let timerHours = Math.floor(pomodoroTotalRestTime / 3600);
-			let timerMinutes = Math.floor((pomodoroTotalRestTime % 3600) / 60);
-			let timerSeconds = Math.floor((pomodoroTotalRestTime % 3600) % 60);
-
-			timerSeconds = timerSeconds < 10 ? '0' + timerSeconds : timerSeconds;
-			timerMinutes = timerMinutes < 10 ? '0' + timerMinutes : timerMinutes;
-
-			pomodoroToShow.innerHTML = `${timerHours}:${timerMinutes}:${timerSeconds}`;
-			worktype.innerHTML = `REST TIME `;
-			pomodoroTotalRestTime--;
-		} else if (!pomodoroTotalRestTime) {
-			clearPomodoroFields();
-			alert('give input');
-		} else {
-			let flashTimerInfoPomodoro = setTimeout(() => {
-				pomodoroToShow.innerHTML = `REST TIME UP `;
-				pomodoroToShow.classList.toggle('timeUp');
-				clearTimeout(flashTimerInfoPomodoro);
-			}, 3000);
-			pomodoroToShow.classList.toggle('timeUp');
-			clearPomodoroFields();
-		}
-	}
-
-	function clearPomodoroFields() {
-		clearInterval(showPomodoroTimer);
-		document.getElementById('pomodoroInputs').childNodes[1].childNodes[3].value = '';
-		document.getElementById('pomodoroInputs').childNodes[3].childNodes[5].value = '';
-		pomodoroTotalWorkTime = parseInt(1);
-		pomodoroTotalRestTime = parseInt(1);
-		pomodoroToShow.innerHTML = 'HH : MM : SS';
-		worktype.innerHTML = '';
-	}
-
-	let showPomodoroTimer = setInterval(() => {
-		executeWorkTimer();
-		// executeRestTimer();
 	}, 1000);
 
-	document.getElementById('pomodoroResetButton').addEventListener('click', (event) => {
-		event.preventDefault();
-		clearInterval(showPomodoroTimer);
+	function clearPomodoroFields() {
+		workTimeInSecs = 0;
+		restTimeInSecs = 0;
+		document.getElementById('worktype').innerHTML = 'SESSION ENDED';
+		document.getElementById('pomodoroTimer').innerHTML = 'HH : MM : SS';
+		document.getElementById('pomodoroInputWorkMinutes').value = '';
+		document.getElementById('pomodoroInputRestMinutes').value = '';
+	}
+
+	document.getElementById('pomodoroResetButton').addEventListener('click', () => {
+		clearInterval(workTime);
 		clearPomodoroFields();
 	});
 });
