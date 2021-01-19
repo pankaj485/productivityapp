@@ -9,7 +9,7 @@ body {
 	text-align: center;
 	font-family: 'Segoe UI', sans-serif;
 	overflow-wrap: break-word;
-	overflow: hidden;
+	/* overflow: hidden; */
 }
 
 /* main container  */
@@ -24,8 +24,7 @@ body {
 
 section {
 	width: 28%;
-	margin: 100px auto;
-	/* height: 500px; */
+	margin: 75px auto;
 	background-color: #4e4b4b;
 	border-radius: 5px;
 }
@@ -37,6 +36,15 @@ section {
 	border-radius: 5px;
 }
 
+footer {
+	margin-top: 50px;
+	color: #444141;
+}
+
+.header h1 {
+	font-weight: bold;
+}
+
 .contentInfo {
 	background-color: #3a3d44;
 	max-width: 80%;
@@ -45,7 +53,7 @@ section {
 	color: white;
 	border-radius: 5px;
 }
-
+/* section 1 */
 .timeInfo {
 	display: flex;
 	width: 80%;
